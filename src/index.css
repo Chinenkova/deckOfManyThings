@@ -1,0 +1,75 @@
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: rgba(25, 23, 23, 0.7) url('../public/images/back.jpg');
+  background-blend-mode: multiply;
+  background-size: cover;
+  height: 100%;
+}
+
+.choose-btn {
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 20px 0;
+  outline: none;
+  cursor: pointer;
+}
+
+
+img {
+  border-radius: 30px;
+  height: 15em;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.center-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;  
+}
+
+.center-line img {
+  margin: 0 20px;
+}
+
+.card__face--front{
+  display: none;
+}
+
+.is-flipped .card__face--front{
+  display: inline;
+}
+
+.is-flipped .card__face--back{
+  display: none;
+}
+
+.cardd {
+  position: absolute;
+  cursor: pointer;
+}
+
+.cardd:hover {
+  top: -55px;
+}
+
+.deck, .old-deck {
+  position: relative;
+  height: 20em;
+}
+
