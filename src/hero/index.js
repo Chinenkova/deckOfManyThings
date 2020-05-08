@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { Deck } from '../deck';
 import * as _ from 'underscore';
 
 export class Hero extends Component {
@@ -7,7 +8,7 @@ export class Hero extends Component {
     super(props);
     this.state = {
       chosenCard: null,
-      wholeDeckNumbersArray: _.shuffle([...Array(54).keys()].map(i => i + 1)),
+      oldDeckNumbersArray: _.shuffle([...Array(14).keys()].map(i => i + 1)),
       cardFlipped: false,
     };
   }
@@ -28,7 +29,7 @@ export class Hero extends Component {
   }
 
   render() {
-    const { wholeDeckNumbersArray, cardFlipped, chosenCard } = this.state;
+    const { oldDeckNumbersArray, cardFlipped, chosenCard } = this.state;
     return (
       <div className="hero-wrapper">
         <button className="go-back">
@@ -40,14 +41,13 @@ export class Hero extends Component {
           <div className="chosen-card">
             <div onClick={this.flipCard.bind(this)} className={`card ${cardFlipped ? 'is-flipped' : ''}`}>
               <img className="card__face card__face--back" src={`/public/images/shirt.png`} />
-              <img className="card__face card__face--front" src={`/public/images/wholedeck/${chosenCard}.png`} />
+              <img className="card__face card__face--front" src={`/public/images/older/${chosenCard}.png`} />
             </div>
           </div>
           </>)
           :
           <div className="hero-deck">
-            {wholeDeckNumbersArray.map((el, key) =>
-              <img className="hero-deck_card" onClick={() => this.chooseCard(el)} alt='' style={{ left: 30 * key + 'px' }} key={key} src={`/public/images/shirt.png`} />)}
+            <Deck oldOnly={true} oldDeck={oldDeckNumbersArray} chooseCard={this.chooseCard.bind(this)} />
           </div>
         }
       </div>

@@ -11,7 +11,8 @@ export class Group extends Component {
       mainDeck: [],
       olderDeck: [],
       deckNumbersArray: _.shuffle([...Array(40).keys()].map(i => i + 1)),
-      oldDeckNumbersArray: _.shuffle([...Array(14).keys()].map(i => i + 1))
+      oldDeckNumbersArray: _.shuffle([...Array(14).keys()].map(i => i + 1)),
+      showBig: false
     };
   }
 
@@ -40,26 +41,32 @@ export class Group extends Component {
     }
   }
 
+  toggleBig(element) {
+    this.setState({showBig: !this.state.showBig})
+    this.setState({bigCard: element})
+  }
+
   render() {
-    const { olderDeck, mainDeck, deckNumbersArray, oldDeckNumbersArray } = this.state;
+    const { olderDeck, mainDeck, deckNumbersArray, oldDeckNumbersArray, showBig, bigCard } = this.state;
     return (
       <div>
+        {showBig && <div className="veil"></div>}
         <button className="go-back">
           <Link to="/">Go back</Link>
         </button>
         {(olderDeck.length === 2 && mainDeck.length === 3) ?
           (<div className="scene">
             <button className="choose-btn" onClick={this.tryAgain.bind(this)}>Try again</button>
-            <Card index={mainDeck[0]} />
+            <Card toggleBig={this.toggleBig.bind(this)} showBig={showBig && mainDeck[0] === bigCard} index={mainDeck[0]} />
             <div className="center-line">
-              <Card index={mainDeck[1]} />
-              <Card old={true} index={olderDeck[0]} />
-              <Card index={mainDeck[2]} />
+              <Card toggleBig={this.toggleBig.bind(this)} showBig={showBig && mainDeck[1] === bigCard} index={mainDeck[1]} />
+              <Card toggleBig={this.toggleBig.bind(this)} showBig={showBig && olderDeck[0] === bigCard} old={true} index={olderDeck[0]} />
+              <Card toggleBig={this.toggleBig.bind(this)} showBig={showBig && mainDeck[2] === bigCard} index={mainDeck[2]} />
             </div>
-            <Card old={true} index={olderDeck[1]} />
+            <Card toggleBig={this.toggleBig.bind(this)} showBig={showBig && olderDeck[1] === bigCard} old={true} index={olderDeck[1]} />
           </div>)
           :
-          <Deck deck={deckNumbersArray} oldDeck={oldDeckNumbersArray} chooseCard={this.chooseCard.bind(this)} />
+          <Deck oldOnly={false} deck={deckNumbersArray} oldDeck={oldDeckNumbersArray} chooseCard={this.chooseCard.bind(this)} />
         }
       </div>
     );

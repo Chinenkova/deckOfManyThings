@@ -122,3 +122,36 @@ img {
 .pick img {
   height: 22em;
 }
+
+.chosen-card .card img{
+  height: 30em;
+}
+
+.big {
+  height: 50em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.close-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background:none;
+  border: none;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.veil {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.8);
+}
