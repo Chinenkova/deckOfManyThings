@@ -83,7 +83,7 @@ img {
   cursor: pointer;
 }
 
-.cardd:hover {
+.cardd:hover, .hero-deck_card:hover {
   top: -55px;
 }
 
