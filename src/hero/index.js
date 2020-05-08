@@ -16,7 +16,8 @@ export class Hero extends Component {
   tryAgain() {
     this.setState({
       chosenCard: null,
-      cardFlipped: false
+      cardFlipped: false,
+      oldDeckNumbersArray: _.shuffle([...Array(14).keys()].map(i => i + 1)),
     })
   }
 
@@ -25,6 +26,7 @@ export class Hero extends Component {
   }
 
   chooseCard(el) {
+    console.log(el, this.state.oldDeckNumbersArray)
     this.setState({ chosenCard: el })
   }
 

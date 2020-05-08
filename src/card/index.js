@@ -24,7 +24,6 @@ export class Card extends Component {
         {this.props.old ? 
         <img onClick={this.openBig.bind(this)} className={`card__face card__face--front ${this.props.showBig ? 'big' : ''}`} src={`/public/images/older/${this.props.index}.png`} /> : 
         <img onClick={this.openBig.bind(this)} className={`card__face card__face--front ${this.props.showBig ? 'big' : ''}`} src={`/public/images/${this.props.index}.png`} />}
-        }
       </div>
     );
   }
