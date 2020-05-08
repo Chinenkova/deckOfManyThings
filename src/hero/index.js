@@ -26,7 +26,6 @@ export class Hero extends Component {
   }
 
   chooseCard(el) {
-    console.log(el, this.state.oldDeckNumbersArray)
     this.setState({ chosenCard: el })
   }
 
