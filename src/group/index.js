@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Card } from '../card';
 import { Deck } from '../deck';
+import { Link } from "react-router-dom";
 import * as _ from 'underscore';
 
-export class Home extends Component {
+export class Group extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,10 +44,12 @@ export class Home extends Component {
     const { olderDeck, mainDeck, deckNumbersArray, oldDeckNumbersArray } = this.state;
     return (
       <div>
-        <button className="choose-btn" onClick={this.tryAgain.bind(this)}>Try again</button>
-
+        <button className="go-back">
+          <Link to="/">Go back</Link>
+        </button>
         {(olderDeck.length === 2 && mainDeck.length === 3) ?
           (<div className="scene">
+            <button className="choose-btn" onClick={this.tryAgain.bind(this)}>Try again</button>
             <Card index={mainDeck[0]} />
             <div className="center-line">
               <Card index={mainDeck[1]} />

@@ -14,6 +14,25 @@ body {
   height: 100%;
 }
 
+.App {
+  text-align: center;
+}
+
+.go-back {
+  display: block;
+  background: none;
+  border: none;
+  padding: 20px;
+  font-size: 1.3em;
+  font-weight: 600;
+  outline: none;
+}
+
+.go-back a {
+  text-decoration: none;
+  color: #fff;
+}
+
 .choose-btn {
   background: none;
   border: none;
@@ -21,7 +40,7 @@ body {
   color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
-  margin: 20px 0;
+  margin: 0 20px 20px;
   outline: none;
   cursor: pointer;
 }
@@ -59,7 +78,7 @@ img {
   display: none;
 }
 
-.cardd {
+.cardd, .hero-deck_card {
   position: absolute;
   cursor: pointer;
 }
@@ -73,3 +92,33 @@ img {
   height: 20em;
 }
 
+.pick-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pick {
+  position: relative;
+  margin: 0 20px;
+}
+
+.pick p {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: #fff;
+  text-decoration: none;
+  font-size: 2em;
+}
+
+.pick img {
+  height: 22em;
+}
