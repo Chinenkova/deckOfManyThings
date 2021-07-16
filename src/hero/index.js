@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-import { Deck } from '../deck';
 import * as _ from 'underscore';
 
 export class Hero extends Component {
@@ -8,7 +6,7 @@ export class Hero extends Component {
     super(props);
     this.state = {
       chosenCard: null,
-      oldDeckNumbersArray: _.shuffle([...Array(14).keys()].map(i => i + 1)),
+      oldDeckNumbersArray: _.shuffle([...Array(22).keys()].map(i => i + 1)),
       cardFlipped: false,
     };
   }
@@ -17,7 +15,7 @@ export class Hero extends Component {
     this.setState({
       chosenCard: null,
       cardFlipped: false,
-      oldDeckNumbersArray: _.shuffle([...Array(14).keys()].map(i => i + 1)),
+      oldDeckNumbersArray: _.shuffle([...Array(22).keys()].map(i => i + 1)),
     })
   }
 
@@ -29,29 +27,46 @@ export class Hero extends Component {
     this.setState({ chosenCard: el })
   }
 
+  rotateDegree(key) {
+    return 'rotate(calc(' + (45-90*key/(this.state.oldDeckNumbersArray.length-1)) + 'deg))'
+  }
+
+  bottomCard(key) {
+    if(key === 0 || key === this.state.oldDeckNumbersArray.length) {
+      return 'calc(0px)';
+    }
+    return 'calc(' + -Math.cos(-Math.PI/2+key*Math.PI/(this.state.oldDeckNumbersArray.length-1))*200 + 'px)';
+  }
+
   render() {
     const { oldDeckNumbersArray, cardFlipped, chosenCard } = this.state;
     return (
-      <div className="hero-wrapper">
-        <button className="go-back">
-          <Link to="/">Go back</Link>
-        </button>
+      <>
+        <img className="candle-first" src={`/public/images/candle.png`}/>
+        <img className="candle-second" src={`/public/images/candle.png`}/>
         {this.state.chosenCard ?
           (<>
-          <button className="choose-btn" onClick={this.tryAgain.bind(this)}>Try again</button>
-          <div className="chosen-card">
-            <div onClick={this.flipCard.bind(this)} className={`card ${cardFlipped ? 'is-flipped' : ''}`}>
-              <img className="card__face card__face--back" src={`/public/images/shirt.png`} />
-              <img className="card__face card__face--front" src={`/public/images/older/${chosenCard}.png`} />
+            <button className="choose-btn" onClick={this.tryAgain.bind(this)}>Draw again</button>
+            <div className="chosen-card">
+              <div onClick={this.flipCard.bind(this)} className={`card ${cardFlipped ? 'is-flipped' : ''}`}>
+                <img className="card__face card__face--back" src={`/public/images/shirt.png`} />
+                <img className="card__face card__face--front" src={`/public/images/${chosenCard}.png`} />
+              </div>
             </div>
-          </div>
           </>)
           :
           <div className="hero-deck">
-            <Deck oldOnly={true} oldDeck={oldDeckNumbersArray} chooseCard={this.chooseCard.bind(this)} />
+            <div className="deck">
+              {oldDeckNumbersArray.map((el, key) => 
+              <div  onClick={() => this.chooseCard(el, false)} alt='' style={{ left: 'calc(50px + ' + 75 * key + 'px)', transform: this.rotateDegree(key), bottom: this.bottomCard(key)}} key={key} className="card-wrapper">
+                <div className="overlay"></div>
+                <img className="cardd" src={`/public/images/shirt.png`} />
+                </div>)
+              }
+            </div>
           </div>
         }
-      </div>
+      </>
     );
   }
 }

@@ -8,14 +8,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgba(25, 23, 23, 0.7) url('../public/images/back.jpg');
+  background: rgba(25, 23, 23, 0.2) url('../public/images/back.png');
   background-blend-mode: multiply;
   background-size: cover;
-  height: 100%;
+  background-position-y: bottom;
 }
 
 .App {
   text-align: center;
+}
+
+.candle-first {
+  position: absolute;
+  right: 170px;
+  top: 110px;
+  height: 8em;
+  transform: rotate(37deg);
+}
+
+.candle-second {
+  position: absolute;
+  right: 50px;
+  top: 250px;
+  height: 10em;
+  transform: rotate(71deg);
 }
 
 .go-back {
@@ -66,30 +82,32 @@ img {
   margin: 0 20px;
 }
 
-.card__face--front{
-  display: none;
-}
-
 .is-flipped .card__face--front{
   display: inline;
 }
 
-.is-flipped .card__face--back{
-  display: none;
-}
-
-.cardd, .hero-deck_card {
+.card-wrapper {
   position: absolute;
   cursor: pointer;
 }
 
-.cardd:hover, .hero-deck_card:hover {
-  top: -55px;
+.card-wrapper .overlay{
+  display: none;
 }
 
-.deck, .old-deck {
+.card-wrapper:hover .overlay{
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background-color: #fbf7f75e;
+}
+
+.deck {
   position: relative;
   height: 20em;
+  margin-top: 360px;
 }
 
 .pick-wrapper {
@@ -123,8 +141,35 @@ img {
   height: 22em;
 }
 
+.chosen-card {
+  height: 560px;
+  width: 400px;
+  perspective: 600px;
+  margin: 0 auto;
+}
+
+.chosen-card .card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 2s ease 0.2s;
+  transform-style: preserve-3d;
+}
+
 .chosen-card .card img{
-  height: 30em;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card__face--front {
+  transform: rotateY( 180deg );
 }
 
 .big {
