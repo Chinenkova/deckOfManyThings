@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 
 type Props = {
   toggleBig: (index: number) => void;
